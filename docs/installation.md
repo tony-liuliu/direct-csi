@@ -119,7 +119,7 @@ image[3]=quay.io/minio/direct-csi:$(curl -s "https://api.github.com/repos/minio/
 
 function privatize(){ echo $1 | sed "s#quay.io#${PRIVATE_REGISTRY_URL}#g"; }
 function pull_tag_push(){ docker pull $1 &&  docker tag $1 $2 && docker push $2; }
-for image in ${images[*]}; do pull_tag_push $image $(privatize $image); done
+for image in ${image[*]}; do pull_tag_push $image $(privatize $image); done
 ```
 
 ## Custom Installation
